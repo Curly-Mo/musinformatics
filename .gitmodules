@@ -1,0 +1,6 @@
+[submodule "src/application/mir_tools"]
+	path = src/application/mir_tools
+	url = https://github.com/Curly-Mo/mir-tools.git
+[submodule "src/lib/librosa"]
+	path = src/lib/librosa
+	url = https://github.com/bmcfee/librosa.git

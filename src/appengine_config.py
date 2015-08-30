@@ -2,7 +2,10 @@
 App Engine config
 
 """
+from google.appengine.ext import vendor
 
+# Add any libraries installed in the "lib" folder.
+vendor.add('lib')
 
 def gae_mini_profiler_should_profile_production():
     """Uncomment the first two lines to enable GAE Mini Profiler on production for admin accounts"""
