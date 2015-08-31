@@ -7,7 +7,7 @@ Important: Place your keys in the secret_keys.py module,
            which should be kept out of version control.
 
 """
-from secret_keys import CSRF_SECRET_KEY, SESSION_KEY
+from musinformatics.secret_keys import CSRF_SECRET_KEY, SESSION_KEY
 
 
 class Config(object):
