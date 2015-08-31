@@ -6,8 +6,8 @@ URL dispatch route mappings and error handlers
 """
 from flask import render_template
 
-from musinformatics import app
-from musinformatics import views
+from app import app
+import views
 
 
 def load_urls():
