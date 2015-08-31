@@ -1,6 +1,3 @@
-[submodule "mir-tools"]
-	path = mir-tools
-	url = https://github.com/Curly-Mo/mir-tools.git
-[submodule "application/mir_tools"]
-	path = application/mir_tools
+[submodule "wsgi/musinformatics/mir_tools"]
+	path = wsgi/musinformatics/mir_tools
 	url = https://github.com/Curly-Mo/mir-tools.git
