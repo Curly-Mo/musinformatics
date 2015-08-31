@@ -12,6 +12,6 @@ app.config.from_object('musinformatics.settings.Production')
 app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
 # Pull in URL dispatch routes
-import urls
+from musinformatics import urls
 
 urls.load_urls()
