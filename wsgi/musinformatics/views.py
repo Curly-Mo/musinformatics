@@ -13,7 +13,7 @@ from flask_cache import Cache
 import tempfile
 
 
-from application import app
+from musinformatics import app
 from forms import InstrumentForm
 
 from mir_tools import test
