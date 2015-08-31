@@ -6,5 +6,5 @@ setup(name='musinformatics',
       author='Colin Fahy',
       author_email='colin@cfahy.com',
       url='https://github.com/Curly-Mo/musinformatics',
-      install_requires=['Flask==0.10.1', ],
+      install_requires=['Flask==0.10.1', 'Flask_Cache==0.13.1'],
       )
