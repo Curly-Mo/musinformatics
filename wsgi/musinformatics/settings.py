@@ -7,13 +7,13 @@ Important: Place your keys in the secret_keys.py module,
            which should be kept out of version control.
 
 """
-from musinformatics.secret_keys import CSRF_SECRET_KEY, SESSION_KEY
+from musinformatics import secret_keys
 
 
 class Config(object):
     # Set secret keys for CSRF protection
-    SECRET_KEY = CSRF_SECRET_KEY
-    CSRF_SESSION_KEY = SESSION_KEY
+    SECRET_KEY = secret_keys.CSRF_SECRET_KEY
+    CSRF_SESSION_KEY = secret_keys.SESSION_KEY
     CACHE_TYPE = 'simple'
 
 
