@@ -8,9 +8,10 @@ See: http://flask.pocoo.org/docs/patterns/wtforms/
 
 """
 
-from flaskext import wtf
-from flaskext.wtf import validators
+from flask.ext.wtf import Form
+from wtforms.fields import FileField
+from wtforms.validators import Required
 
 
-class InstrumentForm(wtf.Form):
-    file = wtf.FileField('Audio File', validators=[validators.Required()])
+class InstrumentForm(Form):
+    file = FileField('Audio File', validators=[Required()])
