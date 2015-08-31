@@ -6,10 +6,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-try:
-    app.config.from_object('settings.Production')
-except ImportError:
-    app.config.from_object('musinformatics.settings.Production')
+#app.config.from_object('settings.Production')
 
 # Enable jinja2 loop controls extension
 app.jinja_env.add_extension('jinja2.ext.loopcontrols')
