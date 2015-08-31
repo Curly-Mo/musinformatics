@@ -4,7 +4,7 @@ Initialize Flask app
 """
 from flask import Flask
 
-app = Flask('application')
+app = Flask(__name__)
 
 app.config.from_object('application.settings.Production')
 
