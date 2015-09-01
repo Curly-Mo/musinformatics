@@ -12,7 +12,7 @@ setup(
         'Flask_Cache==0.13.1',
         'Flask-WTF==0.12',
         'WTForms==2.0.2',
-        'dateutil',
+        'python-dateutil',
         'numpy',
         'scipy',
         'sklearn',
