@@ -14,6 +14,7 @@ setup(
         'WTForms==2.0.2',
         'numpy',
         'scipy',
+        'sklearn',
         'librosa',
     ],
 )
