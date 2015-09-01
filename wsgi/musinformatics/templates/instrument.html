@@ -1,20 +1,20 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block style_block %}
-    <style type="text/css">
+    <style type='text/css'>
         table.table { width: 60%; }
     </style>
 {% endblock %}
 
 {% block content %}
 
-<div class="ui container">
-    <h1 class="ui header">Instrument Classification</h1>
-    <form id="instrument_form" class="ui form raised padded segment inverted"
-        action="{{ url_for('instrument') }}" method="post" enctype="multipart/form-data">
+<div class='ui container'>
+    <h1 class='ui header'>Instrument Classification</h1>
+    <form id='instrument_form' class='ui form raised padded segment inverted'
+        action='{{ url_for('instrument') }}' method='post' enctype='multipart/form-data'>
         {{ form.hidden_tag() }}
         {% for field in form if field.type != 'CSRFTokenField' %}
-            <div class="field">
+            <div class='field'>
             {% if field.type == 'FileField' %}
                {{ field.label }}
                {{ field|safe }}
@@ -24,9 +24,20 @@
             {% endif %}
             </div>
         {% endfor %}
-        <button class="ui primary submit button" type="submit">Identify</button>
-        <div class="ui error message inverted"></div>
+
+        <button class='ui primary submit button' type='submit'>Identify</button>
+
+        <div id='progress' class='ui indicating progress inverted' style='display: none;'>
+            <div class='bar'>
+                <div class='progress'>0%</div>
+            </div>
+            <div class='label'></div>
+        </div>
+
+        <div class='ui error message inverted'></div>
     </form>
+
+
 </div>
 
 
@@ -54,16 +65,25 @@ $('.ui.form').form({
           }
         ]
       }
-    }
+    },
+    onSuccess: submit,
 });
 
-$('form').on('submit', function(e) {
+function submit(e){
     $.ajax({
         url: '{{ url_for('instrument') }}',
         data: new FormData($('form')[0]),
         type: 'POST',
         contentType: false,
         processData: false,
+        xhr: function() {  // Custom XMLHttpRequest
+            var myXhr = $.ajaxSettings.xhr();
+            if(myXhr.upload){ // Check if upload property exists
+                myXhr.upload.addEventListener('progress', progressHandling, false); // For handling the progress of the upload
+            }
+            return myXhr;
+        },
+        beforeSend: initProgress,
         success: function(response) {
             console.log(response.instrument);
         },
@@ -71,7 +91,27 @@ $('form').on('submit', function(e) {
             console.log(error);
         }
     });
-return false;
-});
+    return false;
+};
+
+function initProgress(xhr){
+    $('.progress').show();
+    $('.progress').progress('reset');
+}
+
+function progressHandling(e){
+    if(e.lengthComputable){
+        var percent = 100 * e.loaded/e.total;
+        $('.progress').progress({
+            value: e.loaded,
+            total: e.total,
+            text: {
+                active: 'Uploading... ({percent}%)',
+                success: 'Uploaded!',
+            },
+        });
+    }
+}
+
 </script>
 {% endblock tail_script %}
