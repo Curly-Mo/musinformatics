@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='musinformatics',
     version='1.0',
-    description='Musinformatics Application',
+    description='Musinformatics',
     author='Colin Fahy',
     author_email='colin@cfahy.com',
     url='https://github.com/Curly-Mo/musinformatics',
