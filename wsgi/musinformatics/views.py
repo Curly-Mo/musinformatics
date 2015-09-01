@@ -16,7 +16,7 @@ import tempfile
 from musinformatics.app import app
 from musinformatics.forms import InstrumentForm
 
-from mir_tools import test
+from musinformatics.mir_tools import test
 
 
 cache = Cache(app)
