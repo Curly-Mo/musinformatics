@@ -14,6 +14,7 @@ setup(
         'WTForms',
         'python-dateutil',
         'pyparsing',
+        'six>=1.9.0',
         'matplotlib',
         'numpy',
         'scipy',
