@@ -20,5 +20,6 @@ setup(
         'scikit-learn>=0.16.1',
         'audioread>=1.2.1',
         'librosa',
+        'future',
     ],
 )
