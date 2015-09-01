@@ -15,6 +15,7 @@ setup(
         'numpy',
         'scipy',
         'sklearn',
+        'audioread',
         'librosa',
     ],
 )
