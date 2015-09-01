@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='musinformatics',
     version='1.0',
-    description='Musinformatics',
+    description='Musinformatics Application',
     author='Colin Fahy',
     author_email='colin@cfahy.com',
     url='https://github.com/Curly-Mo/musinformatics',
@@ -20,5 +20,6 @@ setup(
         'scikit-learn>=0.16.1',
         'audioread>=1.2.1',
         'librosa',
+        'future',
     ],
 )
