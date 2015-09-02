@@ -23,7 +23,7 @@ cache = Cache(app)
 
 
 def allowed_file(filename):
-    ALLOWED_EXTENSIONS = set(['wav', 'mp3'])
+    ALLOWED_EXTENSIONS = set(['wav', 'mp3', 'aiff'])
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
@@ -43,5 +43,5 @@ def instrument():
                     file.save(temp.name)
                     return jsonify(test.test(temp.name))
         else:
-            return 'error'
+            return jsonify({'instrument': 'error'})
     return render_template('instrument.html', form=form)
