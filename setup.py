@@ -17,10 +17,8 @@ setup(
         'six>=1.9.0',
         'matplotlib',
         'numpy',
-        'scipy>=0.13.0',
         'scikit-learn',
         'audioread',
         'librosa',
-        'future',
     ],
 )
