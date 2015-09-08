@@ -54,7 +54,7 @@ def generate_randomkey(length):
 
 def write_file(contents):
     with open(file_path, 'wb') as f:
-        f.write(bytes(contents, 'UTF-8'))
+        f.write(contents)
 
 
 def generate_keyfile(csrf_key, session_key):
