@@ -1,0 +1,12 @@
+uwsgi:
+  socket: /tmp/uwsgi.sock
+  master: 1
+  workers: 1
+  chmod-socket: 666
+  auto-procname: 1
+  python-path: .
+  home: /home/ubuntu/.virtualenv/webserver
+  pidfile: /tmp/uwsgi.pid
+  daemonize: /home/ubuntu/log/uwsgi.log
+  touch-reload: /home/ubuntu/musinformatics/.git/index
+  module: run:app
