@@ -122,6 +122,14 @@ function submit(e){
             console.log(response);
         },
         error: function(error) {
+            response_received = true;
+            $('#response').dimmer('hide');
+            $('#instrument').text('Sorry, I am unable to process that file.');
+            $('#instrument').append(
+                $('<i/>')
+                    .addClass("frown icon")
+            );
+            $('#instruments').empty();
             console.log(error);
         }
     });
