@@ -9,7 +9,7 @@
 {% block content %}
 
 <div class='ui container'>
-    <h1 class='ui header'>Instrument Classification</h1>
+    <h1 class='ui Header'>Instrument Classification</h1>
     <form id='instrument_form' class='ui form raised padded segment inverted'
         action='{{ url_for('instrument') }}' method='post' enctype='multipart/form-data'>
         {{ form.hidden_tag() }}
@@ -38,8 +38,12 @@
     </form>
 
     <div id='response' class="ui segment inverted">
-        <div class="ui text loader inverted">Processing</div>
-        <div class="ui huge header white centered"></div>
+        <div class="ui dimmer">
+            <div class="ui text loader inverted">Processing</div>
+        </div>
+
+        <div id='instrument' class='ui header huge white centered'></div>
+        <div id='instruments' class='ui list'></div>
     </div>
 
 </div>
@@ -85,6 +89,7 @@ $('.ui.form').form({
 });
 
 
+var response_received;
 function submit(e){
     $.ajax({
         url: '{{ url_for('instrument') }}',
@@ -101,9 +106,19 @@ function submit(e){
         },
         beforeSend: initProgress,
         success: function(response) {
-            $('#response .loader').removeClass('active');
-            $('#response .loader').hide();
-            $('#response .header').text(response + '!');
+            response_received = true;
+            $('#response').dimmer('hide');
+            $('#instrument').text(response.instrument + '!');
+
+            $('#instruments').empty();
+            for (var i = 0; i < response.instruments.length; i++) { 
+                console.log(response.instruments[i]);
+                $('#instruments').append(
+                    $('<div/>')
+                        .addClass("item")
+                        .text(`${response.instruments[i][0]}: ${response.instruments[i][1]}%`)
+                );
+            }
             console.log(response);
         },
         error: function(error) {
@@ -116,8 +131,8 @@ function submit(e){
 function initProgress(xhr){
     $('.progress').show();
     $('.progress').progress('reset');
-    $('#response .header').text('');
-    $('#response .loader').show();
+    $('#response .p').text('');
+    response_received = false;
 }
 
 function progressHandling(e){
@@ -131,7 +146,10 @@ function progressHandling(e){
                 success: 'Uploaded!',
             },
             onSuccess: function(total){
-                $('#response .loader').addClass('active');
+                if (!response_received) {
+                    $('#response').dimmer({closable: false});
+                    $('#response').dimmer('show');
+                }
             },
         });
     }

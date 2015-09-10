@@ -43,7 +43,12 @@ def instrument():
                 filename = secure_filename(file.filename)
                 with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
                     file.save(temp.name)
-                    return machine_learning.predict_file(temp.name)
+                    prediction, predictions = machine_learning.predict_file(temp.name)
+                    json_obj = {
+                        'instrument': prediction,
+                        'instruments': predictions,
+                    }
+                    return jsonify(json_obj)
         else:
             return jsonify({'instrument': 'error'})
     return render_template('instrument.html', form=form)
