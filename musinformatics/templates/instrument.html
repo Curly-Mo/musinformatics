@@ -37,6 +37,10 @@
         <div class='ui error message inverted'></div>
     </form>
 
+    <div id='response' class="ui segment inverted">
+        <div class="ui text loader inverted">Processing</div>
+        <div class="ui huge header white centered"></div>
+    </div>
 
 </div>
 
@@ -50,6 +54,13 @@
 
 {% block tail_script %}
 <script>
+$.fn.form.settings.rules.size = function(value, size) {
+    if (this[0].files[0].size < size) {
+        return true;
+    }
+    return false;
+}
+
 $('.ui.form').form({
     fields: {
       file: {
@@ -62,12 +73,17 @@ $('.ui.form').form({
           {
             type   : 'regExp[/.*\.(wav|mp3|aiff)/]',
             prompt : 'Allowed extensions: [.wav, .mp3, aiff]'
-          }
+          },
+          {
+            type   : 'size[250000000]',
+            prompt : 'File too large (must be under 250MB)'
+          },
         ]
       }
     },
     onSuccess: submit,
 });
+
 
 function submit(e){
     $.ajax({
@@ -85,6 +101,9 @@ function submit(e){
         },
         beforeSend: initProgress,
         success: function(response) {
+            $('#response .loader').removeClass('active');
+            $('#response .loader').hide();
+            $('#response .header').text(response + '!');
             console.log(response);
         },
         error: function(error) {
@@ -97,6 +116,8 @@ function submit(e){
 function initProgress(xhr){
     $('.progress').show();
     $('.progress').progress('reset');
+    $('#response .header').text('');
+    $('#response .loader').show();
 }
 
 function progressHandling(e){
@@ -108,6 +129,9 @@ function progressHandling(e){
             text: {
                 active: 'Uploading... ({percent}%)',
                 success: 'Uploaded!',
+            },
+            onSuccess: function(total){
+                $('#response .loader').addClass('active');
             },
         });
     }
