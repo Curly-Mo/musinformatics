@@ -10,13 +10,15 @@ For example the *say_hello* handler, handling the URL route '/hello/<username>'
 """
 from flask import render_template, url_for, redirect, request, jsonify
 from flask_cache import Cache
+from werkzeug import secure_filename
 import tempfile
+import os
 
 
 from musinformatics.app import app
 from musinformatics.forms import InstrumentForm
 
-from musinformatics.mir_tools import test
+from musinformatics.mir_tools import machine_learning
 
 
 cache = Cache(app)
@@ -38,10 +40,10 @@ def instrument():
         if form.validate_on_submit():
             file = request.files['file']
             if file and allowed_file(file.filename):
-               # filename = secure_filename(file.filename)
-                with tempfile.NamedTemporaryFile('w') as temp:
+                filename = secure_filename(file.filename)
+                with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
                     file.save(temp.name)
-                    return jsonify(test.test(temp.name))
+                    return machine_learning.predict_file(temp.name)
         else:
             return jsonify({'instrument': 'error'})
     return render_template('instrument.html', form=form)
