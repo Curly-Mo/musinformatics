@@ -37,7 +37,7 @@
         <div class='ui error message inverted'></div>
     </form>
 
-    <div id='response' class="ui segment inverted">
+    <div id='response' class="ui segment inverted hidden">
         <div class="ui dimmer">
             <div class="ui text loader inverted">Processing</div>
         </div>
@@ -155,6 +155,7 @@ function progressHandling(e){
             },
             onSuccess: function(total){
                 if (!response_received) {
+                    $('#response').show();
                     $('#response').dimmer({closable: false});
                     $('#response').dimmer('show');
                 }
