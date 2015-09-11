@@ -111,8 +111,7 @@ function submit(e){
             $('#instrument').text(response.instrument + '!');
 
             $('#instruments').empty();
-            for (var i = 0; i < response.instruments.length; i++) { 
-                console.log(response.instruments[i]);
+            for (var i = 0; i < response.instruments.length && i<5; i++) { 
                 $('#instruments').append(
                     $('<div/>')
                         .addClass("item")
