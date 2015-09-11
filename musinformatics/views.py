@@ -26,7 +26,7 @@ cache = Cache(app)
 
 
 def allowed_file(filename):
-    ALLOWED_EXTENSIONS = set(['wav', 'mp3', 'aiff', 'flac', 'ogg'])
+    ALLOWED_EXTENSIONS = set(['wav', 'mp3', 'aiff', 'aif', 'flac', 'ogg'])
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
