@@ -1,12 +1,12 @@
-<div class="ui menu inverted stackable">
-    <div class="ui container">
-        <a class="item header"><i class="home icon"></i>MusInformatics</a>
+<div id='nav' class='ui menu inverted stackable'>
+    <div class='ui container'>
+        <a class='item header {% if request.path=="/" %}active{% endif %}'><i class='home icon'></i>MusInformatics</a>
 
-        <a class="item active" href="/instrument"><i class="bell icon"></i>Instrument Classification</a>
-        <a class="item" href="/instrument"><i class="music icon"></i>Genre Classification</a>
+        <a class='item {% if request.path=="/instrument" %}active{% endif %}' href='/instrument'><i class='bell icon'></i>Instrument Classification</a>
+        <a class='item {% if request.path=="/genre" %}active{% endif %}' href='/genre'><i class='music icon'></i>Genre Classification</a>
     </div>
 
-    <div class="right item">
+    <div class='right item'>
     </div>
 
 </div>

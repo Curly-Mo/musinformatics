@@ -17,6 +17,9 @@ def load_urls():
     # Instrument Classification page
     app.add_url_rule('/instrument', 'instrument', view_func=views.instrument, methods=['GET', 'POST'])
 
+    # Genre Classification page
+    app.add_url_rule('/genre', 'genre', view_func=views.genre, methods=['GET', 'POST'])
+
     ## Error handlers
     # Handle 404 errors
     @app.errorhandler(404)

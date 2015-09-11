@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 
 {% block style_block %}
-    <style type='text/css'>
-        table.table { width: 60%; }
-    </style>
 {% endblock %}
 
 {% block content %}
 
 <div class='ui container'>
     <h1 class='ui Header'>Instrument Classification</h1>
+    <p>Upload an audio file and I will tell you what instrument it is.&nbsp;&nbsp;&nbsp;(For half-decent results, stick to solo instrument recordings)</p>
     <form id='instrument_form' class='ui form raised padded segment inverted'
         action='{{ url_for('instrument') }}' method='post' enctype='multipart/form-data'>
         {{ form.hidden_tag() }}

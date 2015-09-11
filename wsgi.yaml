@@ -1,7 +1,10 @@
 uwsgi:
   socket: /tmp/uwsgi.sock
   master: 1
-  workers: 1
+  cheaper-algo: spare
+  cheaper: 2
+  cheaper-step: 1
+  workers: 10
   chmod-socket: 666
   auto-procname: 1
   python-path: .

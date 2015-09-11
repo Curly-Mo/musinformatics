@@ -52,3 +52,8 @@ def instrument():
         else:
             return jsonify({'instrument': 'error'})
     return render_template('instrument.html', form=form)
+
+
+def genre():
+    """Genre Classificaiton App"""
+    return render_template('genre.html')
