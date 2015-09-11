@@ -52,7 +52,7 @@ def instrument():
                     }
                     return jsonify(json_obj)
         else:
-            return jsonify({'instrument': 'error'})
+            return jsonify({'success':False})
     return render_template('instrument.html', form=form)
 
 
