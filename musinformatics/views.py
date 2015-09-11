@@ -13,6 +13,7 @@ from flask_cache import Cache
 from werkzeug import secure_filename
 import tempfile
 import os
+import logging
 
 
 from musinformatics.app import app
@@ -25,7 +26,7 @@ cache = Cache(app)
 
 
 def allowed_file(filename):
-    ALLOWED_EXTENSIONS = set(['wav', 'mp3', 'aiff'])
+    ALLOWED_EXTENSIONS = set(['wav', 'mp3', 'aiff', 'flac', 'ogg'])
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
@@ -41,6 +42,7 @@ def instrument():
             file = request.files['file']
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
+                logging.info(filename)
                 with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
                     file.save(temp.name)
                     prediction, predictions = machine_learning.predict_file(temp.name)

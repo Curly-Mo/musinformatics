@@ -73,8 +73,8 @@ $('.ui.form').form({
             prompt : 'Please upload a file'
           },
           {
-            type   : 'regExp[/.*\.(wav|mp3|aiff)/]',
-            prompt : 'Allowed extensions: [.wav, .mp3, aiff]'
+            type   : 'regExp[/.*\.(wav|mp3|aiff|flac|ogg)/]',
+            prompt : 'Allowed extensions: [.mp3, .wav, .aiff, .flac, .ogg]'
           },
           {
             type   : 'size[250000000]',
@@ -104,6 +104,7 @@ function submit(e){
         },
         beforeSend: initProgress,
         success: function(response) {
+            console.log(response);
             response_received = true;
             $('#response').dimmer('hide');
             $('#instrument').text(response.instrument + '!');
@@ -116,9 +117,9 @@ function submit(e){
                         .text(`${response.instruments[i][0]}: ${response.instruments[i][1]}%`)
                 );
             }
-            console.log(response);
         },
         error: function(error) {
+            console.log(error);
             response_received = true;
             $('#response').dimmer('hide');
             $('#instrument').text('Sorry, I am unable to process that file.');
@@ -127,7 +128,6 @@ function submit(e){
                     .addClass("frown icon")
             );
             $('#instruments').empty();
-            console.log(error);
         }
     });
     return false;
