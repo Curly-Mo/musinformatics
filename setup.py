@@ -17,5 +17,6 @@ setup(
         'scipy',
         'audioread',
         'librosa',
+        'scikits.samplerate',
     ],
 )
