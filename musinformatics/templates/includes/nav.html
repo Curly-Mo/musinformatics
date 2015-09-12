@@ -1,12 +1,35 @@
-<div id='nav' class='ui menu inverted stackable'>
-    <div class='ui container'>
+<div id='nav' class='ui menu inverted grid'>
+    <div class='ui container computer tablet only row'>
         <a class='item header {% if request.path=="/" %}active{% endif %}'><i class='home icon'></i>MusInformatics</a>
 
         <a class='item {% if request.path=="/instrument" %}active{% endif %}' href='/instrument'><i class='bell icon'></i>Instrument Classification</a>
         <a class='item {% if request.path=="/genre" %}active{% endif %}' href='/genre'><i class='music icon'></i>Genre Classification</a>
+
+        <div class='right item'>
+        </div>
     </div>
 
-    <div class='right item'>
+
+    <div class='ui container mobile only narrow row'>
+        <a class='item header {% if request.path=="/" %}active{% endif %}'><i class='home icon'></i>MusInformatics</a>
+        <div class='menu hamburger'>
+            <a href='' class='menu item'><i class='sidebar large icon'></i></a>
+        </div>
+
+        <div class='ui sidebar vertical menu inverted left'>
+            <a class='item {% if request.path=="/instrument" %}active{% endif %}' href='/instrument'><i class='bell icon'></i>Instrument Classification</a>
+            <a class='item {% if request.path=="/genre" %}active{% endif %}' href='/genre'><i class='music icon'></i>Genre Classification</a>
+        </div>
     </div>
 
 </div>
+
+<script>
+var hamburger = document.getElementsByClassName('hamburger')[0];
+hamburger.addEventListener('click', function(e) {
+    e.preventDefault();
+    $('.ui.vertical.sidebar')
+        .sidebar('setting', 'transition', 'overlay')
+        .sidebar('toggle');
+});
+</script>
