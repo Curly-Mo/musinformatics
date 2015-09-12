@@ -12,10 +12,10 @@
 
     <div class='ui container mobile only narrow row'>
         <a class='item header {% if request.path=="/" %}active{% endif %}' href='/'><i class='home icon'></i>MusInformatics</a>
-        <div class='ui dropdown item hamburger inverted'>
+        <div class='ui dropdown item hamburger'>
             <i class='sidebar large icon'></i>
 
-            <div class='menu inverted'>
+            <div class='menu'>
                 <a class='item {% if request.path=="/instrument" %}active{% endif %}' href='/instrument'><i class='bell icon'></i>Instrument Classification</a>
                 <a class='item {% if request.path=="/genre" %}active{% endif %}' href='/genre'><i class='music icon'></i>Genre Classification</a>
             </div>

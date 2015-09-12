@@ -19584,7 +19584,7 @@ ol.ui.horizontal.list li:before,
 .ui.vertical.menu .header.item {
   margin: 0em;
   background: '';
-  text-transform: bold;
+  text-transform: normal;
   font-weight: bold;
 }
 
@@ -20791,11 +20791,11 @@ Floated Menu / Item
 /*--- Border ---*/
 
 .ui.inverted.menu .item:before {
-  background: #272b30;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .ui.vertical.inverted.menu .item:before {
-  background: #272b30;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* Sub Menu */
@@ -20848,7 +20848,7 @@ Floated Menu / Item
 /*--- Active ---*/
 
 .ui.inverted.menu .active.item {
-  background: #272b30;
+  background: rgba(255, 255, 255, 0.15);
   color: #bbbfc2 !important;
 }
 
@@ -20858,7 +20858,7 @@ Floated Menu / Item
 }
 
 .ui.inverted.pointing.menu .active.item:after {
-  background: #272b30 !important;
+  background: #3d3e3f !important;
   margin: 0em !important;
   box-shadow: none !important;
   border: none !important;
@@ -20867,12 +20867,12 @@ Floated Menu / Item
 /*--- Active Hover ---*/
 
 .ui.inverted.menu .active.item:hover {
-  background: #272b30;
+  background: rgba(255, 255, 255, 0.15);
   color: #ffffff !important;
 }
 
 .ui.inverted.pointing.menu .active.item:hover:after {
-  background: #272b30 !important;
+  background: #3d3e3f !important;
 }
 
 /*--------------
