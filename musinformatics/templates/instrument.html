@@ -7,7 +7,8 @@
 
 <div class='ui container'>
     <h1 class='ui Header'>Instrument Classification</h1>
-    <p>Upload an audio file and I will tell you what instrument it is.&nbsp;&nbsp;&nbsp;(For half-decent results, stick to solo instrument recordings)</p>
+    <p>Upload an audio file and I will detect what instrument it is.
+       &nbsp;&nbsp;&nbsp;(For half-decent results, stick to solo instrument recordings)</p>
     <form id='instrument_form' class='ui form raised padded segment inverted'
         action='{{ url_for('instrument') }}' method='post' enctype='multipart/form-data'>
         {{ form.hidden_tag() }}
@@ -15,7 +16,7 @@
             <div class='field'>
             {% if field.type == 'FileField' %}
                {{ field.label }}
-               {{ field|safe }}
+               {{ field(accept='audio/*')|safe }}
             {% else %}
                 {{ field.label }}
                 {{ field|safe }}
@@ -75,10 +76,10 @@ $('.ui.form').form({
             type   : 'empty',
             prompt : 'Please upload a file'
           },
-          {
-            type   : 'regExp[/.*\.(wav|mp3|aiff|aif|flac|ogg)/]',
-            prompt : 'Allowed extensions: [.mp3, .wav, .aiff, .flac, .ogg]'
-          },
+//          {
+//            type   : 'regExp[/.*\.(wav|mp3|aiff|aif|flac|ogg)/]',
+//            prompt : 'Allowed extensions: [.mp3, .wav, .aiff, .flac, .ogg]'
+//          },
           {
             type   : 'size[250000000]',
             prompt : 'File too large (must be under 250MB)'
@@ -131,6 +132,7 @@ function submit(e){
                     .addClass("frown icon")
             );
             $('#instruments').empty();
+            $('#instruments').text('Supported file types:  .wav,  .mp3,  .aiff,  .flac,  .ogg,  .au');
         }
     });
     return false;

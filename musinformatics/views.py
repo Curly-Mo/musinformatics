@@ -26,7 +26,7 @@ cache = Cache(app)
 
 
 def allowed_file(filename):
-    ALLOWED_EXTENSIONS = set(['wav', 'mp3', 'aiff', 'aif', 'flac', 'ogg'])
+    ALLOWED_EXTENSIONS = set(['wav', 'mp3', 'aiff', 'aif', 'flac', 'ogg', 'au'])
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
@@ -40,7 +40,7 @@ def instrument():
     if request.method == 'POST':
         if form.validate_on_submit():
             file = request.files['file']
-            if file and allowed_file(file.filename):
+            if file:  # and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 logging.info(filename)
                 with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
@@ -52,7 +52,7 @@ def instrument():
                     }
                     return jsonify(json_obj)
         else:
-            return jsonify({'success':False})
+            return jsonify({'success':False, 'error': 'Errored!', 'status': 515})
     return render_template('instrument.html', form=form)
 
 
