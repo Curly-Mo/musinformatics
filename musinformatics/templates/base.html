@@ -41,5 +41,11 @@
     <script src="/static/semantic/semantic.min.js"></script>
     <script src="/static/js/main.js"></script>
     {% block tail_script %}{# defer-capable JS block #}{% endblock %}
+
+    {% block javascript %}
+    <script>
+        {% include 'includes/google_analytics.js' %}
+    </script>
+    {% endblock %}
 </body>
 </html>
