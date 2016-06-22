@@ -19,5 +19,5 @@ class InstrumentForm(Form):
 
 class SwingifyForm(Form):
     file = FileField('Audio File', validators=[Required()])
-    factors = [(3/2, 'light swing'), (2, 'medium swing'), (3, 'hard swing')]
+    factors = [(1.5, 'light swing'), (2, 'medium swing'), (3, 'hard swing')]
     factor = RadioField('Swing Factor', choices=factors, default=2, coerce=float, validators=[Required()])
