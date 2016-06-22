@@ -18,5 +18,6 @@ setup(
         'audioread',
         'librosa',
         'scikits.samplerate',
+        'pysoundfile',
     ],
 )

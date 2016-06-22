@@ -8,7 +8,7 @@ For example the *say_hello* handler, handling the URL route '/hello/<username>'
   must be passed *username* as the argument.
 
 """
-from flask import render_template, url_for, redirect, request, jsonify
+from flask import render_template, url_for, redirect, request, jsonify, send_file
 from flask_cache import Cache
 from werkzeug import secure_filename
 import tempfile
@@ -18,8 +18,10 @@ import logging
 
 from musinformatics.app import app
 from musinformatics.forms import InstrumentForm
+from musinformatics.forms import SwingifyForm
 
 from musinformatics.mir_tools import machine_learning
+from musinformatics.swingify import swingify as swing
 
 
 cache = Cache(app)
@@ -59,3 +61,25 @@ def instrument():
 def genre():
     """Genre Classificaiton App"""
     return render_template('genre.html')
+
+
+def swingify():
+    """Swingify App"""
+    form = SwingifyForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            file = request.files['file']
+            if file:  # and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                outputname = os.path.splitext(filename)[0]+'_swing.ogg'
+                outputpath = os.path.join(tempfile.gettempdir(), outputname)
+                logging.info(filename)
+                with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
+                    file.save(temp.name)
+                    swing.swingify(temp.name, outputpath, 2)
+                    os.rename(outputpath, temp.name)
+                    logging.info(temp.name)
+                    return send_file(temp.name, as_attachment=True, attachment_filename=outputname)
+        else:
+            return jsonify({'success':False, 'error': 'Errored!', 'status': 515})
+    return render_template('swingify.html', form=form)

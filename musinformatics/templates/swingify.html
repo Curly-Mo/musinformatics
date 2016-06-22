@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block style_block %}
+{% endblock %}
+
+{% block content %}
+
+<div class='ui container'>
+    <h1 class='ui Header'>Swingify</h1>
+    <p>Upload any audio file and I will make it swing.</p>
+    <form id='swingify_form' class='ui form raised padded segment inverted'
+        action='{{ url_for('swingify') }}' method='post' enctype='multipart/form-data'>
+        {{ form.hidden_tag() }}
+        {% for field in form if field.type != 'CSRFTokenField' %}
+            <div class='field'>
+            {% if field.type == 'FileField' %}
+               {{ field.label }}
+               {{ field(accept='audio/*')|safe }}
+            {% else %}
+                {{ field.label }}
+                {{ field|safe }}
+            {% endif %}
+            </div>
+        {% endfor %}
+
+        <button class='ui primary submit button' type='submit'>Make it Swing!</button>
+
+        <div id='progress' class='ui indicating progress inverted' style='display: none;'>
+            <div class='bar'>
+                <div class='progress'>0%</div>
+            </div>
+            <div class='label'></div>
+        </div>
+
+        <div class='ui error message inverted'></div>
+    </form>
+
+    <div id='response' class="ui segment inverted" style='display:none;'>
+        <div class="ui dimmer">
+            <div class="ui text loader inverted">Processing</div>
+        </div>
+
+        <div id='result' class='ui header huge white centered'></div>
+        <div id='file_types'></div>
+    </div>
+
+</div>
+
+
+{% endblock content %}
+
+
+{% block footer %}
+{% endblock footer %}
+
+
+{% block tail_script %}
+<script>
+$.fn.form.settings.rules.size = function(value, size) {
+    if (!this[0] || !this[0].files || !this[0].files[0]) {
+        return true;
+    }
+    if (this[0].files[0].size < size) {
+        return true;
+    }
+    return false;
+}
+
+$('.ui.form').form({
+    fields: {
+      file: {
+        identifier : 'file',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please upload a file'
+          },
+//          {
+//            type   : 'regExp[/.*\.(wav|mp3|aiff|aif|flac|ogg)/]',
+//            prompt : 'Allowed extensions: [.mp3, .wav, .aiff, .flac, .ogg]'
+//          },
+          {
+            type   : 'size[250000000]',
+            prompt : 'File too large (must be under 250MB)'
+          },
+        ]
+      }
+    },
+    onSuccess: submit,
+});
+
+
+var response_received;
+function submit(e){
+    $.ajax({
+        url: '{{ url_for('swingify') }}',
+        data: new FormData($('form')[0]),
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        xhr: function() {  // Custom XMLHttpRequest
+            var myXhr = $.ajaxSettings.xhr();
+            if(myXhr.upload){ // Check if upload property exists
+                myXhr.upload.addEventListener('progress', progressHandling, false); // For handling the progress of the upload
+            }
+            return myXhr;
+        },
+        beforeSend: initProgress,
+        success: function(response) {
+            //console.log(response);
+            response_received = true;
+            $('#response').dimmer('hide');
+            $('#result').text('Done!');
+        },
+        error: function(error) {
+            console.log(error);
+            response_received = true;
+            $('#response').dimmer('hide');
+            $('#result').text('Sorry, I am unable to process that file.');
+            $('#result').append(
+                $('<i/>')
+                    .addClass("frown icon")
+            );
+            $('#file_types').text('Supported file types:  .wav,  .mp3,  .aiff,  .flac,  .ogg,  .au');
+        }
+    });
+};
+
+function initProgress(xhr){
+    $('.progress').show();
+    $('.progress').progress('reset');
+    $('#response .p').text('');
+    response_received = false;
+}
+
+function progressHandling(e){
+    if(e.lengthComputable){
+        var percent = 100 * e.loaded/e.total;
+        $('.progress').progress({
+            value: e.loaded,
+            total: e.total,
+            text: {
+                active: 'Uploading... ({percent}%)',
+                success: 'Uploaded!',
+            },
+            onSuccess: function(total){
+                if (!response_received) {
+                    $('#response').show();
+                    $('#response').dimmer({closable: false});
+                    $('#response').dimmer('show');
+                }
+            },
+        });
+    }
+}
+
+</script>
+{% endblock tail_script %}

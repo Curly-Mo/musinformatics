@@ -20,6 +20,9 @@ def load_urls():
     # Genre Classification page
     app.add_url_rule('/genre', 'genre', view_func=views.genre, methods=['GET', 'POST'])
 
+    # Swingify page
+    app.add_url_rule('/swingify', 'swingify', view_func=views.swingify, methods=['GET', 'POST'])
+
     ## Error handlers
     # Handle 404 errors
     @app.errorhandler(404)
