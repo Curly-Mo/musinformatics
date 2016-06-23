@@ -99,7 +99,7 @@ function submit(e){
     xhr.responseType = 'arraybuffer';
     xhr.send(new FormData($('form')[0]));
 
-    xhr.onerror = function(){
+    var xhrerror = function(){
         console.log(error);
         response_received = true;
         $('#response').dimmer('hide');
@@ -111,6 +111,7 @@ function submit(e){
         $('#file_types').text('Supported file types:  .wav,  .mp3,  .aiff,  .flac,  .ogg,  .au');
     }
 
+    xhr.onerror = xhrerror;
     xhr.onload = function () {
         if (this.status === 200) {
             console.log('success!');
@@ -155,6 +156,8 @@ function submit(e){
 
                 setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
             }
+        }else{
+            xhrerror();
         }
     };
     return false;
