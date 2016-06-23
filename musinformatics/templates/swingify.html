@@ -104,7 +104,7 @@ function submit(e){
     xhr.responseType = 'arraybuffer';
     xhr.send(new FormData($('form')[0]));
 
-    var xhrerror = function(){
+    var xhrerror = function(error){
         console.log(error);
         response_received = true;
         $('#response').dimmer('hide');
@@ -162,7 +162,7 @@ function submit(e){
                 setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
             }
         }else{
-            xhrerror();
+            xhrerror(this);
         }
     };
     return false;
