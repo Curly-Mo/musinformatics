@@ -99,6 +99,18 @@ function submit(e){
     xhr.responseType = 'arraybuffer';
     xhr.send(new FormData($('form')[0]));
 
+    xhr.onerror = function(){
+        console.log(error);
+        response_received = true;
+        $('#response').dimmer('hide');
+        $('#result').text('Sorry, I am unable to process that file.');
+        $('#result').append(
+            $('<i/>')
+                .addClass("frown icon")
+        );
+        $('#file_types').text('Supported file types:  .wav,  .mp3,  .aiff,  .flac,  .ogg,  .au');
+    }
+
     xhr.onload = function () {
         if (this.status === 200) {
             console.log('success!');
