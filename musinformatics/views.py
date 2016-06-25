@@ -73,11 +73,11 @@ def swingify():
             logging.info(factor)
             if file:  # and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
-                outputname = os.path.splitext(filename)[0]+'_swing.wav'
+                outputname = os.path.splitext(filename)[0]+'_swing.flac'
                 logging.info(filename)
                 with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
                     file.save(temp.name)
-                    swing.swingify(temp.name, temp.name, factor)
+                    swing.swingify(temp.name, temp.name, factor, format='flac')
                     logging.info(temp.name)
                     return send_file(temp.name, as_attachment=True, attachment_filename=outputname)
         else:
