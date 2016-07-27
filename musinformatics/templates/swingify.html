@@ -41,6 +41,7 @@
         </div>
 
         <div id='result' class='ui header huge white centered'></div>
+        <div id="audio_container" style="text-align: right;"></div>
         <div id='file_types'></div>
     </div>
 
@@ -71,6 +72,9 @@ $.fn.form.settings.rules.size = function(value, size) {
     return false;
 }
 
+if(window.AudioContext || window.webkitAudioContext){
+    window.context = new (window.AudioContext || window.webkitAudioContext)();
+}
 $('.ui.form').form({
     fields: {
       file: {
@@ -129,37 +133,46 @@ function submit(e){
             if (disposition && disposition.indexOf('attachment') !== -1) {
                 var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
                 var matches = filenameRegex.exec(disposition);
-                if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                if (matches != null && matches[1]){
+                    filename = matches[1].replace(/['"]/g, '');
+                }
             }
             var type = this.getResponseHeader('Content-Type');
             console.log(type);
             console.log(this);
 
+            var container = document.getElementById('audio_container');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            var audio = new Audio();
+            audio.crossOrigin = "anonymous";
+            audio.setAttribute('id', 'audio');
+            audio.setAttribute('controls', 'true');
+            audio.style.width = "100%";
+            container.appendChild(audio);
+            console.log(audio);
+
             var blob = new Blob([this.response], { type: type });
             if (typeof window.navigator.msSaveBlob !== 'undefined') {
-                window.navigator.msSaveBlob(blob, filename);
+                audio.src = blob;
+                //window.navigator.msSaveBlob(blob, filename);
             } else {
                 var URL = window.URL || window.webkitURL;
                 var downloadUrl = URL.createObjectURL(blob);
+                audio.src = downloadUrl;
 
                 console.log(filename);
-                if (filename) {
-                    // use HTML5 a[download] attribute to specify filename
-                    var a = document.createElement("a");
-                    // safari doesn't support this yet
-                    if (typeof a.download === 'undefined') {
-                        window.location = downloadUrl;
-                    } else {
-                        a.href = downloadUrl;
-                        a.download = filename;
-                        document.body.appendChild(a);
-                        a.click();
-                    }
-                } else {
-                    window.location = downloadUrl;
+                var a = document.createElement("a");
+                a.href = downloadUrl;
+                if(filename){
+                    a.download = filename;
+                }else{
                 }
+                a.textContent = 'download';
+                container.appendChild(a);
 
-                setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+                //setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
             }
         }else{
             xhrerror(this);
