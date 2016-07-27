@@ -155,8 +155,19 @@ function submit(e){
 
             var blob = new Blob([this.response], { type: type });
             if (typeof window.navigator.msSaveBlob !== 'undefined') {
-                audio.src = blob;
-                //window.navigator.msSaveBlob(blob, filename);
+                var URL = window.URL || window.webkitURL;
+                var downloadUrl = URL.createObjectURL(blob);
+                audio.src = downloadUrl;
+                var a = document.createElement("a");
+                a.href = 'javascript:void(0)';
+                a.textContent = 'download';
+                a.addEventListener('click', function(e){
+                    if(filename == null){
+                        filename = 'swing.wav';
+                    }
+                    window.navigator.msSaveBlob(blob, filename);
+                });
+                container.appendChild(a);
             } else {
                 var URL = window.URL || window.webkitURL;
                 var downloadUrl = URL.createObjectURL(blob);
