@@ -1,0 +1,11 @@
+# Install via 'pip install -r requirements.txt'
+
+flask
+flask_cache
+jinja2
+werkzeug
+wtforms
+librosa
+numpy
+sklearn
+soundfile
