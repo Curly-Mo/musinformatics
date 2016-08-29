@@ -33,7 +33,7 @@ def allowed_file(filename):
 
 
 def home():
-    return redirect(url_for('instrument'))
+    return redirect(url_for('swingify'))
 
 
 def instrument():
