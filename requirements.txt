@@ -6,6 +6,4 @@ jinja2
 werkzeug
 wtforms
 librosa
-numpy
-sklearn
 soundfile
