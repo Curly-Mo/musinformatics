@@ -20,8 +20,8 @@ from musinformatics.app import app
 from musinformatics.forms import InstrumentForm
 from musinformatics.forms import SwingifyForm
 
-from musinformatics.mir_tools import machine_learning
-from musinformatics.swingify import swingify as swing
+from .mir_tools import machine_learning
+from .swingify import swingify as swing
 
 
 cache = Cache(app)
