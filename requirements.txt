@@ -7,3 +7,4 @@ werkzeug
 wtforms
 librosa
 soundfile
+gunicorn
