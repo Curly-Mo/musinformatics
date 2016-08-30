@@ -9,4 +9,3 @@ werkzeug
 wtforms
 librosa
 soundfile
-future
