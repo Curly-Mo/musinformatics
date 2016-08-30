@@ -1,5 +1,6 @@
 # Install via 'pip install -r requirements.txt'
 
+gunicorn
 flask
 flask_cache
 jinja2
@@ -7,4 +8,3 @@ werkzeug
 wtforms
 librosa
 soundfile
-gunicorn
