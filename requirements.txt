@@ -10,4 +10,3 @@ wtforms
 librosa
 soundfile
 future
-scikits.samplerate
