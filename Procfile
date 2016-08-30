@@ -1,1 +1,1 @@
-web: gunicorn run:app
+web: export PYTHONPATH='./libs'; gunicorn run:app
