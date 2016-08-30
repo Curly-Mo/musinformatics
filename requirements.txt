@@ -3,6 +3,7 @@
 gunicorn
 flask
 flask_cache
+flask_wtf
 jinja2
 werkzeug
 wtforms
