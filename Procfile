@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath='./libs' app:app
+web: gunicorn --pythonpath='./libs' wsgi:app.app
