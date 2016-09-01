@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath='./libs' musinformatics.app:app
+web: gunicorn --pythonpath='./libs' app:app
