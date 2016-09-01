@@ -1,1 +1,1 @@
-web: export PYTHONPATH='./libs'; gunicorn run:app
+web: gunicorn --pythonpath='./libs' musinformatics.app:app
