@@ -62,6 +62,8 @@ dependencies:
 - conda-forge::x264=20131217=1
 - conda-forge::xz=5.2.2=0
 - conda-forge::zlib=1.2.8=3
+- gevent=1.1.2=py35_0
+- greenlet=0.4.10=py35_0
 - libgfortran=3.0.0=1
 - mkl=11.3.3=0
 - pyqt=4.11.4=py35_4

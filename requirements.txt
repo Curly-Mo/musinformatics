@@ -1,5 +1,6 @@
 # Install via 'pip install -r requirements.txt'
 
+gevent
 gunicorn
 flask
 flask-cache
