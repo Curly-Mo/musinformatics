@@ -8,7 +8,7 @@
     "postdeploy": "python musinformatics/generatekeys.py"
   },
     "WEB_CONCURRENCY": {
-      "description": "The number of processes to run.",
+      "description": "The number of processes to run",
       "value": "3"
     }
   }
