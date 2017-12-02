@@ -53,7 +53,7 @@ def generate_randomkey(length):
 
 
 def write_file(contents):
-    with open(file_path, 'wb') as f:
+    with open(file_path, 'w') as f:
         f.write(contents)
 
 
