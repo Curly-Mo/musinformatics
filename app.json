@@ -1,0 +1,15 @@
+{
+  "name": "Musinformatics",
+  "description": "Host my music python scripts.",
+  "keywords": [
+  ],
+  "website": "https://musinformatics.com",
+  "scripts": {
+    "postdeploy": "python musinformatics/generatekeys.py"
+  },
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "3"
+    }
+  }
+}
