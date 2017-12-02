@@ -1,0 +1,28 @@
+{
+  "name": "musinformatics",
+  "description": "",
+  "scripts": {
+    "postdeploy": "python musinformatics/generate_keys.py"
+  },
+  "env": {
+    "PATH": {
+      "required": true
+    },
+    "WEB_CONCURRENCY": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/kennethreitz/conda-buildpack.git"
+    },
+    {
+      "url": "https://github.com/shunjikonishi/heroku-buildpack-ffmpeg.git"
+    }
+  ]
+}
