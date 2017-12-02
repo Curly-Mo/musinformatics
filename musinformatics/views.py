@@ -77,7 +77,7 @@ def swingify():
                 logging.info(filename)
                 with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
                     file.save(temp.name)
-                    swing.swingify(temp.name, temp.name, factor, format='wav')
+                    swing.swingify(temp.name, temp.name, factor, format='wav', max_length=128)
                     logging.info(temp.name)
                     return send_file(temp.name, as_attachment=True, attachment_filename=outputname)
         else:
