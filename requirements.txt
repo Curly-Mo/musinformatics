@@ -11,3 +11,4 @@ wtforms
 librosa
 pathlib
 tflearn
+tensorflow
