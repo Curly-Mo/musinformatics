@@ -4,3 +4,7 @@
 [submodule "musinformatics/swingify"]
 	path = musinformatics/swingify
 	url = https://github.com/Curly-Mo/swingify.git
+[submodule "musinformatics/tf_sandbox"]
+	path = musinformatics/tf_sandbox
+	url = https://github.com/Curly-Mo/tf_sandbox
+	branch = master

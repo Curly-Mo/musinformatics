@@ -17,6 +17,10 @@ class InstrumentForm(Form):
     file = FileField('Audio File', validators=[Required()])
 
 
+class GenreForm(Form):
+    file = FileField('Audio File', validators=[Required()])
+
+
 class SwingifyForm(Form):
     file = FileField('Audio File', validators=[Required()])
     factors = [(1.5, 'light swing'), (2, 'medium swing'), (3, 'hard swing')]
