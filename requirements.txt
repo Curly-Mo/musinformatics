@@ -1,11 +1,11 @@
 # Install via 'pip install -r requirements.txt'
 
+gevent
 gunicorn
 flask
-flask_cache
-flask_wtf
+flask-cache
+flask-wtf
 jinja2
 werkzeug
 wtforms
 librosa
-soundfile
