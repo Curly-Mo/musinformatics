@@ -12,3 +12,4 @@ librosa
 pathlib
 tflearn
 tensorflow
+dill
