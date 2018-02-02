@@ -13,3 +13,4 @@ pathlib
 tflearn
 tensorflow
 dill
+matplotlib
