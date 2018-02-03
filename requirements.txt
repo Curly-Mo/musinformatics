@@ -14,3 +14,4 @@ tflearn
 tensorflow
 dill
 matplotlib
+soundfile
