@@ -1,8 +1,1 @@
 # Install via 'pip install -r requirements.txt'
-
-pathlib
-tflearn
-tensorflow
-dill
-soundfile
-pandas
