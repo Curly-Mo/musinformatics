@@ -2,3 +2,5 @@ python=3.6.4
 numpy
 scikit-learn
 gunicorn
+matplotlib
+tk
