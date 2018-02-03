@@ -13,6 +13,5 @@ pathlib
 tflearn
 tensorflow
 dill
-matplotlib
 soundfile
 pandas

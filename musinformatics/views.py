@@ -20,9 +20,6 @@ from musinformatics.app import app
 from musinformatics.forms import InstrumentForm, GenreForm
 from musinformatics.forms import SwingifyForm
 
-import matplotlib
-matplotlib.use('Agg')
-import musinformatics.mir_tools.machine_learning as machine_learning
 from musinformatics.swingify import swingify as swing
 from musinformatics.tf_sandbox.tflearn import model_wrapper
 from musinformatics.tf_sandbox.tflearn import cnn
@@ -46,24 +43,7 @@ def home():
 
 def instrument():
     """Instrument Classificaiton App"""
-    form = InstrumentForm()
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            file = request.files['file']
-            if file:  # and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                logging.info(filename)
-                with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
-                    file.save(temp.name)
-                    prediction, predictions = machine_learning.predict_file(temp.name)
-                    json_obj = {
-                        'instrument': prediction,
-                        'instruments': predictions,
-                    }
-                    return jsonify(json_obj)
-        else:
-            return jsonify({'success':False, 'error': 'Errored!', 'status': 515})
-    return render_template('instrument.html', form=form)
+    return render_template('instrument.html')
 
 
 def genre():
@@ -77,7 +57,7 @@ def genre():
                 logging.info(filename)
                 with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
                     file.save(temp.name)
-                    y, Y = cnn.predict(genre_model.model, temp.name, labels, 10)
+                    y, Y = cnn.predict(genre_model.model, temp.name, labels, 30)
                     logging.info(temp.name)
                     logging.info(Y)
                     json_obj = {
