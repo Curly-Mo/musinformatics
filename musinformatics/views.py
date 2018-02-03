@@ -20,6 +20,8 @@ from musinformatics.app import app
 from musinformatics.forms import InstrumentForm, GenreForm
 from musinformatics.forms import SwingifyForm
 
+import matplotlib
+matplotlib.use('Agg')
 import musinformatics.mir_tools.machine_learning as machine_learning
 from musinformatics.swingify import swingify as swing
 from musinformatics.tf_sandbox.tflearn import model_wrapper
