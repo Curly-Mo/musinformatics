@@ -1,14 +1,5 @@
 # Install via 'pip install -r requirements.txt'
 
-gevent
-gunicorn
-flask
-flask-cache
-flask-wtf
-jinja2
-werkzeug
-wtforms
-librosa
 pathlib
 tflearn
 tensorflow
