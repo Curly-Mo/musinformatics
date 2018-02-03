@@ -10,3 +10,4 @@ librosa
 tensorflow
 tflearn
 soundfile
+h5py
