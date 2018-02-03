@@ -1,12 +1,12 @@
 # Install via 'pip install -r requirements.txt'
-dill=0.2.7.1
-flask=0.12.2
-flask-cache=0.13.1
-flask-wtf=0.14.2
-gunicorn=19.7.1
-joblib=0.11
-numpy=1.13.3
-librosa=0.5.1
-tensorflow=1.4.0
-tflearn=0.3.2
-
+dill==0.2.7.1
+flask==0.12.2
+flask-cache==0.13.1
+flask-wtf==0.14.2
+gunicorn==19.7.1
+joblib==0.11
+numpy==1.13.3
+librosa==0.5.1
+tensorflow==1.4.1
+tflearn==0.3.2
+soundfile
