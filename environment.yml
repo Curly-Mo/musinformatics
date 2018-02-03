@@ -12,8 +12,7 @@ dependencies:
 - gunicorn=19.7.1=py36_0
 - joblib=0.11=py36_0
 - numpy=1.13.3=py36_blas_openblas_201
-- pandas=0.22.0=py36_0
-- scipy=1.0.0=py36_blas_openblas_201
+- librosa=0.5.1=py36_1
 - tensorflow=1.4.0=py36_0
 - tflearn=0.3.2=py36he51c03d_0
 prefix: /home/colin/anaconda3/envs/musinformatics
