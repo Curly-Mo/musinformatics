@@ -7,6 +7,6 @@ gunicorn
 joblib
 numpy
 librosa
-tensorflow-cpu==1.15
+tensorflow==1.15
 tflearn
 soundfile
