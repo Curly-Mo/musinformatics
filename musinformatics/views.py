@@ -28,7 +28,6 @@ import joblib
 
 
 cache = Cache(app)
-genre_model = model_wrapper.Model.load('all_genre1')
 labels = joblib.load('models/all_genre1/all_genre_labels_labels.p')
 
 
@@ -57,12 +56,14 @@ def genre():
                 logging.info(filename)
                 with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
                     file.save(temp.name)
+                    genre_model = model_wrapper.Model.load('all_genre1')
                     y, Y = cnn.predict(genre_model.model, temp.name, labels=labels, sample=1024, duration=60)
                     logging.info(temp.name)
                     logging.info(Y)
                     json_obj = {
                         'predictions': Y,
                     }
+                    del genre_model
                     return jsonify(json_obj)
         else:
             return jsonify({'success':False, 'error': 'Errored!', 'status': 515})
