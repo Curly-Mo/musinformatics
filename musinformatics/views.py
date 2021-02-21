@@ -57,7 +57,7 @@ def genre():
                 logging.info(filename)
                 with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
                     file.save(temp.name)
-                    y, Y = cnn.predict(genre_model.model, temp.name, labels, 15)
+                    y, Y = cnn.predict(genre_model.model, temp.name, labels=labels, sample=1024, duration=30)
                     logging.info(temp.name)
                     logging.info(Y)
                     json_obj = {
@@ -83,7 +83,7 @@ def swingify():
                 logging.info(filename)
                 with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
                     file.save(temp.name)
-                    swing.swingify(temp.name, temp.name, factor, format='wav', max_length=120)
+                    swing.swingify(temp.name, temp.name, factor, sr=22050, format='wav', max_length=180)
                     logging.info(temp.name)
                     return send_file(temp.name, as_attachment=True, attachment_filename=outputname)
         else:
