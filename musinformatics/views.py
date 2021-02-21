@@ -57,7 +57,7 @@ def genre():
                 logging.info(filename)
                 with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
                     file.save(temp.name)
-                    y, Y = cnn.predict(genre_model.model, temp.name, labels=labels, sample=1024, duration=30)
+                    y, Y = cnn.predict(genre_model.model, temp.name, labels=labels, sample=1024, duration=60)
                     logging.info(temp.name)
                     logging.info(Y)
                     json_obj = {
