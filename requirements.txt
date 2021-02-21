@@ -7,7 +7,7 @@ gunicorn
 joblib
 numpy
 librosa
-tensorflow
+tensorflow-cpu
 tflearn
 soundfile
 h5py
