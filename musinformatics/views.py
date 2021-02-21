@@ -9,7 +9,6 @@ For example the *say_hello* handler, handling the URL route '/hello/<username>'
 
 """
 from flask import render_template, url_for, redirect, request, jsonify, send_file
-from flask_caching import Cache
 from werkzeug.utils import secure_filename
 import tempfile
 import os
@@ -27,7 +26,6 @@ sys.modules['cnn'] = cnn
 import joblib
 
 
-cache = Cache(app)
 labels = joblib.load('models/all_genre1/all_genre_labels_labels.p')
 
 

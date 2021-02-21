@@ -1,7 +1,6 @@
 # Install via 'pip install -r requirements.txt'
 dill
 flask
-flask-caching
 flask-wtf
 gunicorn
 joblib
