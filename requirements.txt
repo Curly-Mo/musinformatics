@@ -1,5 +1,4 @@
 # Install via 'pip install -r requirements.txt'
-dill
 flask
 flask-cache
 flask-wtf
@@ -10,4 +9,3 @@ librosa
 tensorflow-cpu
 tflearn
 soundfile
-h5py
