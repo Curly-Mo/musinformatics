@@ -1,11 +1,14 @@
 # Install via 'pip install -r requirements.txt'
 dill
-flask
-flask-wtf
+flask<=2.2.3
+flask-wtf<1.0.0
+werkzeug<3.0.0
 gunicorn
 joblib
 numpy
 librosa
-tensorflow-cpu~=1.15.0
-tflearn~=0.3.2
+tensorflow-cpu<2.13.0
+tflearn
+Pillow<10.0.0
 soundfile
+protobuf<3.21.0

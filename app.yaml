@@ -1,0 +1,32 @@
+runtime: python311
+instance_class: F4_1G
+
+entrypoint: gunicorn -b :$PORT --workers 3 --timeout 120 --preload main:app
+
+# default_expiration: "180d 0h"
+
+handlers:
+- url: /images/favicon.ico
+  static_files: musinformatics/static/img/favicon.ico
+  upload: static/img/favicon.ico
+- url: /css
+  static_dir: musinformatics/static/css
+  http_headers:
+    Vary: Accept-Encoding
+- url: /js
+  static_dir: musinformatics/static/js
+  http_headers:
+    Vary: Accept-Encoding
+- url: /images
+  static_dir: musinformatics/static/img
+  http_headers:
+    Vary: Accept-Encoding
+- url: /static
+  static_dir: musinformatics/static
+  http_headers:
+    Vary: Accept-Encoding
+- url: /.*
+  script: main.app
+  secure: always
+  redirect_http_response_code: 301
+

@@ -82,9 +82,9 @@ def swingify():
                 logging.info(filename)
                 with tempfile.NamedTemporaryFile(suffix=os.path.splitext(filename)[1]) as temp:
                     file.save(temp.name)
-                    swing.swingify(temp.name, temp.name, factor, sr=44100, hop_length=512, format='wav', max_length=120)
+                    swing.swingify(temp.name, temp.name, factor, sr=44100, hop_length=512, format='wav', max_length=300)
                     logging.info(temp.name)
-                    return send_file(temp.name, as_attachment=True, attachment_filename=outputname)
+                    return send_file(temp.name, as_attachment=True, download_name=outputname)
         else:
             return jsonify({'success':False, 'error': 'Errored!', 'status': 515})
     return render_template('swingify.html', form=form)
